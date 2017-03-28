@@ -1,0 +1,387 @@
+\input{ /Users/Mohsen/Desktop/HelperFile.tex}
+\usepackage[titletoc]{appendix}
+\doublespacing
+\begin{document}
+
+\title{Risk Sharing within Family with Endogenous Marriage Formation and Dissolution}
+\author{Mohsen Mirtaher}
+\date{\today}
+\maketitle
+
+ \section{Environment}
+In this paper, we develop a model to investigate the interaction of marriage market, government tax and transfers, and assets in providing consumption insurance against wage socks. These three mechanisms are tightly connected, thus studying them together is essential. The main contribution of this model is to allow both marriage formation and dissolution to be endogenously determined. Other studies have found a large role for marriage in insuring against wage shocks but those studies have been based on the full commitment assumption which rules out the possibility of divorce. This assumption misses empirical evidence that shows wage shocks can trigger divorce and thereby could potentially weaken the insurance capacity of marriage. However, modeling divorce cannot be truly done without modeling marriage formation because an important component of divorce value is the option value of remarriage.  \\
+
+In what follows, we delineate a search and match model of marriage market. There are two sides in this matching game; males and females. There are $\mathcal I$ types of males and $\mathcal J$ types of females. Agents are either single or married therefore the model does not distinguish between the never-married and divorcees. Types are time-invariant; say exogenous educational levels. There are three sources of shocks in the model: spouses' wage shocks and shocks to marital utility (or match quality). There are two economic gains of marriage: risk-sharing and tax benefits. 
+
+\section{Wage Process}
+We assume that individuals' wages follow a Markov process. The wages are drawn jointly for the married couples but they are drawn independently for the singles
+\begin{align*}
+f_{W_{m,t}, W_{f,t}|W_{m, t-1}, W_{f, t-1}, \Omega_{t-2}} &= f_{W_{m,t}, W_{f,t}|W_{m, t-1}, W_{f, t-1}}\quad \text{Married Couples} \\
+f_{W_{g,t}|W_{g, t-1} \Omega_{t-2}} &= f_{W_{g,t}|W_{g, t-1}}\quad g \in \{m,f\} \quad \text{Singles}
+\end{align*}
+where $\Omega_{t-2}$ denotes the history of shocks at $t-2$ and before. 
+
+\begin{comment}
+In particular, we assume a special type of Markov process which is adopted broadly in the literature. We assume that log of wages, net of observables, follows a Random Walk process as follows 
+
+\begin{align*}
+\log{W_{g,t}} &= x'_{g,t}\beta_W + F_{g,t} + \varepsilon_{g,t} \quad g \in \{m,f\} \\
+F_{g,t} &= F_{g,t-1} + \eta_{g,t}
+\end{align*}
+
+For the couples, the transitory and permanent shocks are drawn jointly in each period according to the following distributions 
+\begin{align*}
+(\varepsilon_{m,t}, \varepsilon_{f,t})'  \sim \mathcal{N}(0, \begin{bmatrix}
+\sigma^2_{\varepsilon, m} & \sigma_{\varepsilon, mf} \\
+\sigma_{\varepsilon, mf} & \sigma^2_{\varepsilon, f}
+\end{bmatrix}) \\
+(\eta_{m,t}, \eta_{f,t})'  \sim \mathcal{N}(0, \begin{bmatrix}
+\sigma^2_{\eta, m} & \sigma_{\eta, mf}\\
+\sigma_{\eta, mf} & \sigma^2_{\eta, f}
+\end{bmatrix})
+\end{align*}
+
+\begin{align*}
+(\varepsilon_{m,t}, \varepsilon_{f,t})'  &\independent (\eta_{m,t}, \eta_{f,t})'  \\
+(\varepsilon_{m,t}, \varepsilon_{f,t})'  &\independent (\varepsilon_{m,\tilde t}, \varepsilon_{f,\tilde t})'  \quad t \neq \tilde t  \\
+(\eta_{m,t}, \eta_{f,t})'  &\independent (\eta_{m,\tilde t}, \eta_{f,\tilde t})'  \quad t \neq \tilde t 
+\end{align*}
+
+
+Singles receive their transitory and permanent shocks independently in each period according to the following distributions 
+\begin{align*}
+\varepsilon_{g,t} &\sim \mathcal{N}(0, \sigma^2_{\varepsilon, g}) \\
+\eta_{g,t} &\sim \mathcal{N}(0, \sigma^2_{\eta, g}) \\
+\eta_{g,t} &\independent \varepsilon_{g,t} \\
+\varepsilon_{g,t} &\independent \varepsilon_{g,t-1} \\
+\eta_{g,t} &\independent \eta_{g,t-1} 
+\end{align*}
+
+Finally, note that it is straightforward to generalize the wage process so that the distribution of shocks be heterogeneous with respect to different types of marriages and singles. 
+
+\end{comment}
+
+\section{Dynamic Programming Model}
+We develop the model in a discrete time dynamic programming framework. I have dropped the time indexing for brevity and variables with prime refer to the next period realizations. We have three exogenous stochastic state variables: males' and females' wages and marital utility. In addition, the model includes one endogenous state variable that is assets which moves deterministically. Therefore, these state variables enter as arguments in the value functions. $A$ denotes the assets held by household and $a$ denotes the assets held by single individuals. Per period, agents draw utility from private consumption and leisure as a married or single agent. $u_g^k(c_g, 1-h_g)$ denotes the utility of an agent of gender $g$ and type $k$. In addition to this "economic utility", married couples enjoy "marital utility" as well which we assume enters additively separable. Consider a marriage in which a man of type $i$ marries to a woman of type $j$. Then the total per period utility of each spouse is as follows 
+\begin{align*}
+U_m^i &= u_m^i(c_m^i, 1-h_m^i) + z^{i,j} \\
+U_f^j&= u_f^j(c_f^j, 1-h_f^j) + z^{i,j} \\
+\end{align*}
+Note that we have assumed that marital utility is a public good produced via marriage. In our dynamic setting, $\zeta^{i,j} $ comprises two components: a time-invariant latent mean and an i.i.d. component independent of the latter. We also assume that shocks to marital utility are independent of wage shocks. 
+\begin{align*}
+ z^{i,j}_t =  \bar z^{i,j} + \zeta^{i,j}_t
+\end{align*}
+We define value functions as follows
+\begin{itemize}
+\item $V_m^{i,j}(A, w_m, w_f, \zeta)$: the value function of a married male of type $i$ who is married to a female of type $j$ with marital utility $\zeta$ and household-level assets of $A$
+\item $V_f^{i,j}(A, w_m, w_f, \zeta)$: the value function of a married female of type $j$ who is married to a man of type $i$ with marital utility $\zeta$ and household-level assets of $A$
+
+\item $S_g^k(a_g, w_g)$: the value function of a single person of gender $g \in \{m, f\}$ and type $k$ with individual-level assets of $a_g$
+
+\end{itemize}
+
+\subsection{Bargaining}
+In each period, the married couples jointly determine their private consumption, labor supply, and next period level of assets via a Nash bargaining mechanism. Furthermore, this bargaining process determines whether the couple should divorce in the current period or not. In fact, as we will show later, the first order conditions of the bargaining process imply that marriage would dissolve if the marriage total surplus is negative after picking the optimum level of control variables meaning consumption, labor supply, and next period assets.  We formulate the Nash bargaining problem as follow 
+\begin{align*}
+\max_{c_m, c_f, h_m, h_f, A'} &\left [ V_m^{i,j} (A, w_m, w_f, \zeta) - S_m^i(\textcolor{blue}{\gamma} A, w_m)\right ]^{\rho} \\
+& \left [ V_f^{i,j} (A, w_m, w_f, \zeta) - S_f^j(\textcolor{blue}{(1 -\gamma)} A, w_f)\right ]^{1-\rho} \\
+s.t.  &\quad c_m + c_f + A' = T_1(w_m h _m + w_f h_f) + (1+r)A
+\end{align*}
+  
+This model is, in fact, an \emph{Imperfectly Transferable Utility} matching framework in which private consumption and leisure are the means for concession and transfer of utility between spouses. However, the transferability is imperfect because the lost marginal utility as a result of conceding a unit of consumption or leisure by the conceding spouse is not necessarily equal to the gained margin utility by the receiving spouse. $\rho$ denotes the husband's relative bargaining power. But, note that here \emph{Bargaining power} is different than \emph{sharing rule}, i.e. the way that joint resources divide. Sharing rule determines endogenously and is updated with arrival of wage hocks in each period. $\gamma$ denotes the husband's share from saving after divorce. According to US law, assuming $\gamma = 0.5$ is appropriate. \\
+
+Since spouses pool their labor incomes and decide their level consumption, labor supply, and net period assets jointly, they share the risk of wage shocks. However, they are not fully committed to cover one another in the face of any shock. They are committed up to their reservation value or thereat points which is the value of singlehood. After picking the optimal level of consumption, labor supply, and next period assets, spouses calculate their own marriage surplus. They would seek divorce in the current period if at least one of the spouses obtains negative marriage surplus. However, as we explain later, the bargaining first order conditions imply that spouses surplus should have the same sign. In other words, when marriage dissolves, in fact, both spouses would be better off with seeking divorce. \\
+
+Denoting pre-tax income by $y$, $T(y)$ is a mapping determining the after-tax income. $T_0, T_1$ denote singles and married couples mappings, respectively. US tax system is more generous toward the married, thus, this represents the second motive for getting married.  This mapping allows us to incorporate the complementarity between spouses' labor supply which arises from strategic decision making in regard to the tax code. In particular, we use the following specification for mapping  
+\begin{align*}
+T(y) = (1-\chi) y^{(1 - \iota)}
+\end{align*}
+where $\chi$ and $\iota$ can vary over time and by household characteristics such as family size and number of children. One advantage of this mapping is that it can capture the progressivity of taxes. To see that, note that the marginal tax rate (MTR) is 
+\begin{equation*}
+MTR = 1 - T'(y)= 1 - \dfrac{(1 - \chi)(1 - \iota)}{y^{\iota}}
+\end{equation*}
+which implies the higher the pre-tax household labor income is, the higher is the marginal tax rate. $\iota$ captures the degree of progressivity where progressivity is increasing in $\iota$. Proportional taxation is a special case of this mapping with no progressivity characterized by $\iota = 0$. Finally, note that effective marginal tax rate could be negative (i.e. transfers) due to EITC and Food Stamp. \\
+
+\subsection{ The value of being married}
+Denote the optimal level of consumption, labor supply, and next period assets by $\bar c_m, \bar c_f, \bar \bar h_m, \bar h_f, \bar A'$, respectively. Then, the value of marriage can be represented thorough the following Bellman equation 
+\begin{align*}
+V_m^{i,j}(A, w_m, w_f, \zeta) =  u_m^i(\bar c_m(A, w_m, w_f), 1 - \bar h_m(A, w_m, w_f)) + z^{i,j} + \\
+ \beta  \int_{\mathcal{Z}} \int_{\mathcal{W_F}} \int_{\mathcal{W_M}} \max \left \{ V_m^{i,j}(A'(A, w_m, w_f, \zeta), w'_m, w'_f, \zeta'), S_m^i(\gamma A'(A, w_m, w_f, \zeta), w'_m)\right\} \\
+\left. \times f_{W'_m, W'_f|W_m, W_f} \left (w'_m, w'_f| W_m = w_m, W_f = w_f \right) f_{\zeta}(\zeta')
+\right \}
+\end{align*}
+\begin{align*}
+V_f^{i,j}(A, w_m, w_f, \zeta) =  u_f^j(\bar c_f(A, w_m, w_f), 1 - \bar h_f(A, w_m, w_f)) + z^{i,j} + \\
+ \beta \int_{\mathcal{Z}} \int_{\mathcal{W_F}} \int_{\mathcal{W_M}} \max \left \{ V_f^{i,j}(A'(A, w_m, w_f, \zeta), w'_m, w'_f, \zeta'), S_f^j((1 - \gamma) A'(A, w_m, w_f, \zeta), w'_m)\right\} \\
+\left. \times f_{W'_m, W'_f|W_m, W_f} \left (w'_m, w'_f| W_m = w_m, W_f = w_f \right) f_{\zeta}(\zeta')
+\right \}
+\end{align*}
+
+The instantaneous component of the value function determines via Nash bargaining as preceded. The continuation value depends on the decision of the couple whether to split or stay together given the new revelations of wages and marital utility shocks and the amount of assets sent from the preceding period as part of bargaining process. 
+
+\subsection{The value of being single}
+In each period, singles, given the level of assets that is going to be sent to the following period, pick their optimal level of consumption and labor supply in a static problem as follows 
+
+\begin{align}
+&\max_{c, h} \quad  u_g^k(c,1 - h) \label{intra_single} \\
+& s.t. \quad c + a' = (1 + r)a + T_0(w_gh) \nonumber
+\end{align}
+The indirect utility function for singles can be written as follows 
+\begin{equation}
+\psi_g^k(a, a', w_g) \equiv u_g^k(c^*(a, a', w_g), 1 -h^*(a, a', w_g)) \label{indirect_single}
+\end{equation}
+Singles' tax/transfer mapping from pre-tax income, $T_0(y)$ is defines as before 
+\begin{equation*}
+T_0(w_g^k h) = (1-\chi_0) (w_g h)^{(1 - \iota_0)}
+\end{equation*}
+
+The level of assets next period is the only inter-temporal control variable which determines by solving their Bellman equation. Denote the equilibrium distribution of single women's assets of type $j$ by $f_{A_f^j}( a _f)$ over support $\mathcal{A_J^F}$. Also, $n_f(j)$ denotes the density of single females of type $j$. Then, we can represent the value of singlehood as follows 
+
+\begin{align}
+S_m^i(a, w_m) = & \max_{a'} \left \{ \psi^i_m(a, a', w_m) + \right.  \nonumber \\
+\left.  \beta  \int_{\mathcal{Z}} \int_{\mathcal{A_J^F}} \int_{\mathcal J} \int_{\mathcal{W_F}} \int_{\mathcal{W_M}} \right. & \left. \max  \left \{V_m^{i,j}(\textcolor{blue}{a'+ a_f}, w'_m, w'_f, \zeta'), S_m^i(a', w'_m) \right \}  \right. \nonumber \label{singlehood} \\
+&\left.  \times \mathbf 1\left \{V_f^{i,j}(\textcolor{blue}{a'+ a_f}, w'_m, w'_f, \zeta') - S_f^j( a_f, w'_f) \geq 0 \right \} \right. \\
+&\left. \times f_{W'_m|W_m} (w'_m| W_m = w_m) f_{W'_f} (w'_f) \right.  \nonumber \\
+&\left. \times f_{\tilde A_f^j}( a _f) n_f(j) f_{\zeta}(\zeta') dw'_m dw'_f  dj da_f d\zeta' \right\} \nonumber 
+\end{align}
+where we have assumed that upon marriage the spouses pool their assets. A similar Bellman equation can be written for $S_f^j(a, w_f)$. In the continuation part of equation \eqref{singlehood}, the choice of asset by a male agent affects and will be affected by equilibrium distribution of assets held among female agents which makes matters complicated. One simplifying assumption is to assume that there are a large number of agent, thus, the actions of a single agent does not affect the the distribution of females' assets on the other side of matching market. In other words, any agent takes the distribution of assets held by the opposite gender as given. In practice we can use the \emph{observed distribution} of assets instead in equation \eqref{singlehood} to calculate the continuation value. 
+Denote the \emph{observed distribution} of single women's assets of type $j$ by $f_{\tilde A_f^j}(\tilde a _f)$ over support $\mathcal{\tilde{A}_J^F}$. We will use this distribution in lieu of $f_{A_f^j}( a _f)$. 
+
+\section{Solving the model}
+\subsection{Period $T$}
+To illustrate how the model works, we consider solving the model backwards for period $T$, i.e. the last period. Solving the model for the preceding periods follows the same logic. We need to pin down the optimal values of consumption and labor supply for the married and single agents in addition to the decision to divorce for the married and the decision to get married for singles at period $T$. Since this is the last period, $a^i_{m, T+1} = a^j_{f, T+1} = A^{i,j}_{T+1} = 0$.  \\
+Agents who have been single at $T-1$, after realization of wage shocks at period $T$, solve problem \eqref{intra_single}. Thus, $S_{m,T}, S_{f,T}$ can be derived as follows 
+\begin{align*}
+S_{g,T}^k(a_{g,T}, w_{g,T}; \bm{\vartheta_{g,T}}) = \psi_g^k(a_{g,T},0,  w_{g,T}; \bm{\vartheta_{g,T}}) \equiv u_g^k(c^*(a_{g,T}, w_{g,T}; \bm{\vartheta_{g,T}}), 1 -h^*(a_{g,T}, w_{g,T}; \bm{\vartheta_{g,T}})
+\end{align*}
+where $\bm{\vartheta_{g,T}}$ is the vector parameters of the model 
+\begin{align*}
+\bm{\vartheta_{g,T}} = \{ r_T, \chi_T, \iota_T, \bm{\delta_{g,T}}\}
+\end{align*}
+where $\bm{\delta_g}$ are preference parameters for an agent of gender $g$. 
+
+Agents who have been married at $T-1$ solve the following bargaining problem at the beginning of period $T$, after realization of period $T$ wage shocks. 
+\begin{align*}
+\max_{c^i_{m,T}, c^j_{f,T}, h^i_{m,T}, h^j_{f,T}} &\left [ u_m^{i} (c^i_{m,T}, h^i_{m,T}) + z^{i,j} - \psi_m^i(\gamma A^{i,j}_T, w_{m,T})\right ]^{\rho} \\
+& \left [ u_f^{j} (c^j_{f,T}, h^j_{f,T}) + z^{i,j} - \psi_f^j((1 -\gamma) A^{i,j}_T, w_{f,T})\right ]^{1-\rho} \\
+s.t.  &\quad c^i_{m,T} + c^j_{f,T} = T_1(w_{m,T} h^i _{m,T} + w_{f,T} h^j_{f,T}) + (1+r_T)A^{i,j}_T
+\end{align*}
+Denote the Lagrange multiplier corresponding to the budget constraint by $\lambda_T$. First order conditions imply 
+\begin{align}
+\dfrac{\rho}{u_m^i + z^{i,j} - \psi_m^i} \dfrac{\partial u_m^i}{\partial c^i_{m,T}} &= \lambda_T  \label{foc_1} \\
+\dfrac{1 - \rho}{u_f^j+ z^{i,j}- \psi_f^j} \dfrac{\partial u_f^j}{\partial c^j_{f,T}} &= \lambda_T \label{foc_2}\\
+\dfrac{\rho}{u_m^i+ z^{i,j} - \psi_m^i} \dfrac{\partial u_m^i}{\partial h^i_{m,T}} &= -\lambda_T w_{m,T} T'(w_{m,T} h^i _{m,T} + w_{f,T} h^j_{f,T}) \\
+\dfrac{1 - \rho}{u_f^j+ z^{i,j}- \psi_f^j} \dfrac{\partial u_f^j}{\partial h^j_{f,T}} &= -\lambda_T w_{f,T} T'(w_{m,T} h^i _{m,T} + w_{f,T} h^j_{f,T}) 
+\end{align}
+This nonlinear system of equations can be solved generally. Denote the solution of this system by $\bar c_{m,T}(A_T, w_{m,T}, w_{f,T}, \zeta_t; \bm{\theta_T}), \bar c_{f,T}(A_T, w_{m,T}, w_{f,T}, \zeta_t; \bm{\theta_T}), \bar h_{m,T}(A_T, w_{m,T}, w_{f,T}, \zeta_t; \bm{\theta_T}), \bar h_{f,T}(A_T, w_{m,T}, w_{f,T}, \zeta_t; \bm{\theta_T})$.  $\bm{\theta_T}$ is the vector of parameters of the model 
+\begin{align*}
+\bm{\theta_T} = \{\rho, r_T, \chi_T, \iota_T, \gamma_T, \bm{\delta_{m,T}, \delta_{f,T}}\}
+\end{align*}
+where $\bm{\delta_m, \delta_f}$ are the preference parameters of males and females, respectively. Thus, we can calculate $V_{m,T}, V_{f,T}$ as follows 
+\begin{align*}
+V^{i,j}_{m,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) &= u_m^i\left (\bar c_{m,T}(A^{i,j}_T, w_{m,T}, w_{f,T}; \bm{\theta_T}), 1 - \bar h_{m,T}(A^{i,j}_T, w_{m,T}, w_{f,T}; \bm{\theta_T})\right ) + \bar z^{i,j} +\zeta_T^{i,j} \\
+V^{i,j}_{f,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) &= u^j_f\left (\bar c_{f,T}(A^{i,j}_T, w_{m,T}, w_{f,T}; \bm{\theta_T}), 1 - \bar h_{f,T}(A^{i,j}_T, w_{m,T}, w_{f,T}; \bm{\theta_T})\right ) + \bar z^{i,j} +\zeta_T^{i,j} 
+\end{align*}
+Finally, the couple should decide to get divorced or stay married at period $T$. They seek divorce if the marriage surplus of at least one of the spouses is negative. After calculating the value functions, each spouses' surplus can be calculated handily  
+\begin{align*}
+\Gamma_{m,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T})&= V^{i,j}_{m,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) - S_m^i(\gamma A^{i,j}_T, w_{m,T}; \bm{\vartheta_{g,T}}) \\
+\Gamma_{f,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T})&= V^{i,j}_{f,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) - S_f^j((1-\gamma) A^{i,j}_T, w_{m,T}; \bm{\vartheta_{g,T}})
+\end{align*}
+Note that $\bm{\vartheta_{g,T}} \subset \bm{\theta_T}$. We can also define the total surplus of the marriage as the sum of the spouses' surplus 
+\begin{align*}
+\Gamma_T^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) = \Gamma_{m,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) + \Gamma_{f,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T})
+\end{align*}
+Thus the couple get divorced if 
+\begin{align}
+D^{i,j}_{d,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) = 1 - \mathbf 1\{\Gamma_{m,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) \geq 0, \quad \Gamma_{f,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) \geq 0\} \label{divorce_rule}
+\end{align}
+However, we can simplify \eqref{divorce_rule} using the first order conditions of bargaining problem. Equations \eqref{foc_1} and \eqref{foc_2} imply 
+\begin{align}
+\dfrac{\rho \dfrac{\partial u_m^i}{\partial c^i_{m,T}}}{\Gamma_{m,T}^{i,j}} =  \dfrac{(1 -\rho) \dfrac{\partial u_f^j}{\partial c^j_{f,T}}}{\Gamma_{f,T}^{i,j}} = 
+\dfrac{\rho \dfrac{\partial u_m^i}{\partial c^i_{m,T}} + (1 -\rho) \dfrac{\partial u_f^j}{\partial c^j_{f,T}}}{\Gamma_{T}^{i,j}} \label{equiv}
+\end{align}
+since the marginal utilities, $\dfrac{\partial u_m^i}{\partial c^i_{m,T}}, \dfrac{\partial u_f^j}{\partial c^j_{f,T}}$, are strictly positive
+\begin{align}
+sign(\Gamma_{m,T}^{i,j}) = sign(\Gamma_{f,T}^{i,j}) = sign(\Gamma_{T}^{i,j}) \label{equiv_gamma}
+\end{align} 
+Note that it can be shown that result \eqref{equiv} holds at all periods preceding $T$ as well. Thus, divorce decision rule \eqref{equiv} can be simplified as follows 
+\begin{align}
+D^{i,j}_{d,T} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) &= \mathbf 1\{\Gamma_{m,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) < 0\} \\
+& = \mathbf 1\{\Gamma_{f,T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) < 0\} \nonumber \\
+& = \mathbf 1\{\Gamma_{T}^{i,j} (A^{i,j}_T, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) < 0\} \nonumber
+\end{align}
+To close the model at period $T$ we need also specify the decision rule for consummating a match for singles. It can be derived from a similar argument as divorce decision rule as follows. For details look at section \ref{sec_5}. 
+\begin{align}
+D^{i,j}_{c,T} (a_{m,T}, a_{f,T}, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) &= \mathbf 1\{\Gamma_{m,T}^{i,j} (a_{m,T} + a_{f,T}, w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) > 0\} \\
+& = \mathbf 1\{\Gamma_{f,T}^{i,j} (a_{m,T} + a_{f,T},  w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) > 0\} \nonumber \\
+& = \mathbf 1\{\Gamma_{T}^{i,j} (a_{m,T} + a_{f,T},  w_{m,T}, w_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}) > 0\} \nonumber
+\end{align}
+\subsection{Period $T-1$}
+The difference between the last period and preceding periods is that the agents decide about the optimum level of assets in the next period in addition to decisions made in the last period. Here we demonstrate results for period $T-1$ , but they can be written for any other preceding period without loss of generality. \\
+First, we start by solving the problem of singles. Given that next period value functions $V_{m,T}^{i,j}, S_{m,T}^i,$ are known, male singles of type $i$ determine the next period's optimal holding of assets as follows (conditional on $a_{m, T-1}$)
+\begin{align*}
+S_{m,T-1}^i(a_{m, T-1}, w_{m, T-1}) \equiv \max_{a_{m,T}} & \left \{ \psi^i_m(a_{m,T-1}, a_{m,T}, w_{m,T-1}) + \right. \\
+&\left. \beta E_{\zeta_T, \tilde a_f, k, w^i_{m,T}, w^k_{f,T}} \max  \left \{V_{m,T}^{i,j}(\textcolor{black}{a_{m,T}+ \tilde a_f}, w_{m, T}, w_{f,T}, \zeta^{i,k}_T), S_{m,T}^i(a_{m, T},  w_{m,T}) \right \} \right \}
+\end{align*}
+which implies the following first order condition 
+\begin{align*}
+\dfrac{\partial \psi_m^i}{\partial a'} + \beta E_{\zeta_T, \tilde a_f, k, w^i_{m,T}, w^k_{f,T}} \left[ \dfrac{\partial V_{m, T}^{i,j}}{\partial A}D_{c,T}^{i,k}  + \dfrac{\partial S_{m,T}^i}{\partial a}  (1 - D_{c,T}^{i,k} )\right] = 0
+\end{align*}
+This yields the policy function $\bar a_{m,T}(a_{m, T-1}, w_{m, T-1})$ and value function $S_{m,T-1}^i(a_{m, T-1}, w_{m, T-1})$. \\
+
+Next, couples solve the following bargaining problem in period $T-1$
+
+\begin{small}
+\begin{align*}
+\max_{c^i_{m,T-1}, c^j_{f,T-1}, h^i_{m,T-1}, h^j_{f,T-1}, A^{i,j}_{T}} 
+&\left [ u_m^{i} (c^i_{m,T-1}, h^i_{m,T-1})+ \right. \\
+& \left. \beta E_{\zeta_T, w_{m,T}, w_{f,T}} \max \{V^{i,j}_{m,T} (A^{i,j}_T, w^i_{m,T}, w^j_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}), S_{m,T}^i(\gamma A_T^{i,j}, w^i_{m,T}; \bm{\vartheta_{m,T}}) \}   - \right. \\
+&\left.  \psi_m^i(A^{i,j}_{T-1}, \gamma A^{i,j}_T, w^i_{m,T-1}) -  \right. \\& \left. \beta E_{\zeta_T, \tilde  a_f, k, w_{m,T}, w_{f,T}} \max\{V_{m, T}^{i,k}(\gamma A^{i,j}_T + \tilde a^k_f, w^i_{m,T}, w^k_{f,T}, \zeta^{i,k}_T; \bm{\theta_T}), 
+S_{m,T}^i(\gamma A^{i,j}_T, w^i_{m,T}; \bm{\vartheta_{m,T}} )\} \right ]^{\rho} \\
+& \left [u_f^{j} (c^j_{f,T-1}, h^j_{f,T-1}) + \right. \\
+&\left. \beta E_{\zeta_T,w_{m,T}, w_{f,T}} \max \{V^{i,j}_{f,T} (A^{i,j}_T, w^i_{m,T}, w^j_{f,T}, \zeta^{i,j}_T; \bm{\theta_T}), S_{f,T}^j((1 -\gamma) A_T^{i,j}, w^j_{f,T}; \bm{\vartheta_{f,T}}) \} - \right. \\
+& \left.   \psi_f^j(A_{T-1}^{i,j}, (1 -\gamma) A^{i,j}_T, w^j_{f,T-1}) \right. \\
+& \left. - \beta E_{\zeta_T, \tilde a_m, k, w_{m,T}, w_{f,T}} \max\{V_{f, T}^{k,j}((1-\gamma) A^{i,j}_T + \tilde a^k_m, w^k_{m,T}, w^j_{f,T}, \zeta^{k,j}_T; \bm{\theta_T}), 
+S_{f,T}^j((1-\gamma) A^{i,j}_T, w^j_{f,T}; \bm{\vartheta_{m,T}} )\}\right ]^{1-\rho} \\
+s.t.  &\quad c^i_{m,T-1} + c^j_{f,T-1} + A_{T}^{i,j} = T_1(w^i_{m,T-1} h^i _{m,T-1} + w^j_{f,T-1} h^j_{f,T-1}) + (1+r_{T-1})A^{i,j}_{T-1}
+\end{align*}
+\end{small}
+Note that the fact that $sign(\Gamma_m^{i,j}) = sign(\Gamma_f^{i,j})$ simplifies the continuation value for singles. Denote the Lagrange multiplier corresponding to the budget constraint by $\lambda_{T-1}$. First order conditions with respect to $c_m, c_f, h_m, h_f$ are similar to the ones for the last period. Note that, given assets, the continuation values are independent of these choice variables.
+\begin{small}
+\begin{align}
+\dfrac{\rho}{\underbrace{u_{m, T-1}^i + \beta E_{\zeta_T, w_{m,T} , w_{f,T}}  \left[V_{m,T}^{i,j}(1 -D_{d,T}^{i,j}) + S_{m,T}^i D_{d,T}^{i,j} \right] + z_{T-1}^{i,j} - S_{m, T-1}^i}_{\Gamma_{m,T-1}^{i,j}}} \dfrac{\partial u_{m, T-1}^i}{\partial c^i_{m,T-1}} &= \lambda_{T-1}  \label{foc_1} \\
+\dfrac{1 - \rho}{\underbrace{u_{f, T-1}^j + \beta E_{\zeta_T, w_{f,T} , w_{f,T}}  \left[V_{m,T}^{i,j}(1 -D_{d,T}^{i,j}) + S_{f,T}^j D_{d,T}^{i,j} \right] + z_{T-1}^{i,j} - S_{f, T-1}^j}_{\Gamma^{i,j}_{f,T-1}}} \dfrac{\partial u_{f,T-1}^j}{\partial c^j_{f,T-1}} &= \lambda_{T-1} \label{foc_2}\\
+\dfrac{\rho}{u_{m, T-1}^i + \beta E_{\zeta_T, w_{m,T} , w_{f,T}}  \left[V_{m,T}^{i,j}(1 -D_{d,T}^{i,j}) + S_{m,T}^i D_{d,T}^{i,j} \right] + z_{T-1}^{i,j} - S_{m, T-1}^i} \dfrac{\partial u_{m, T-1}^i}{\partial h^i_{m,T-1}} &= -\lambda_{T-1} w_{m,T-1} T'(w_{m,T-1} h^i _{m,T-1} + w_{f,T-1} h^j_{f,T-1}) \\
+\dfrac{1 - \rho}{u_{f, T-1}^j + \beta E_{\zeta_T, w_{f,T} , w_{f,T}}  \left[V_{m,T}^{i,j}(1 -D_{d,T}^{i,j}) + S_{f,T}^j D_{d,T}^{i,j} \right] + z_{T-1}^{i,j} - S_{f, T-1}^j} \dfrac{\partial u_{f, T-1}^j}{\partial h^j_{f,T-1}} &= -\lambda_{T-1} w_{f,T-1} T'(w_{m,T-1} h^i _{m,T-1} + w_{f,T-1} h^j_{f,T-1}) 
+\end{align}
+\end{small}
+The first order condition with respect to the next period level of assets is as follows
+\begin{small}
+\begin{align*}
+&\dfrac{\rho}{\Gamma_{m,T-1}^{i,j}} \left [ - \gamma \dfrac{\partial \psi_m^i}{\partial a'}   + \beta E_{w_{m,T}, w_{m,T}} \left( \dfrac{\partial V_{m,T}^{i,j}}{\partial A} (1- D_{d,T}^{i,j}) + \gamma \dfrac{\partial S_{m,T}^i}{\partial a} D_{d,T}^{i,j} \right) - \beta \gamma E_{\tilde a_f, k, w_{m,T}, w_{f,T}} \left ( \dfrac{\partial V_{m,T}^{i,k} }{\partial A} D_{c,T}^{i,k}+ \dfrac{\partial S_m^i}{\partial a} (1 - D_{c,T}^{i,k})\right)\right] = \\
+&\dfrac{1-\rho}{\Gamma_{f,T-1}^{i,j}} \left [ -(1- \gamma) \dfrac{\partial \psi_f^j}{\partial a'}   + \beta E_{w_{m,T}, w_{f,T}} \left( \dfrac{\partial V_{f,T}^{i,j}}{\partial A} (1- D_{d,T}^{i,j}) + (1 -\gamma) \dfrac{\partial S_{f,T}^j}{\partial a} D_{d,T}^{i,j} \right) - \beta (1-\gamma) E_{\tilde a_f, k, w_{m,T}, w_{f,T}} \left ( \dfrac{\partial V_{m,T}^{k,j} }{\partial A} D_{c,T}^{k,j}+ \dfrac{\partial S_f^j}{\partial a} (1 - D_{c,T}^{k,j})\right)\right]
+\end{align*}
+\end{small}
+This nonlinear system of equations can be solved in principle. The solution of this system results in policy functions as follows 
+\begin{align*}
+\bar c_{m,T-1} &= \bar c_{m,T-1}(A_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta^{T-1}}) \\
+\bar c_{f,T-1} &= \bar c_{f,T-1}(A_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta^{T-1}})\\
+\bar h_{m,T-1} &= \bar h_{m,T-1}(A_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta^{T-1}}) \\
+\bar h_{f,T-1} &= \bar h_{f,T-1}(A_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta^{T-1}}) \\
+\bar A_{T} &= \bar A_{T}(A_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta^{T-1}}) \\
+\end{align*}
+where $\bm{\theta^{T-1}} = \{\bm{\theta_{T}}, \bm{\theta_{T-1}}\}$. 
+By substituting the policy functions into utility functions, we can derive the value functions and subsequently the marital decisions as follows. \begin{align}
+D^{i,j}_{d,T-1} (A^{i,j}_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta_{T-1}}) &= \mathbf 1\{\Gamma_{m,T-1}^{i,j} (A^{i,j}_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta_{T-1}}) < 0\} \\
+& = \mathbf 1\{\Gamma_{f,T-1}^{i,j} (A^{i,j}_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta_{T-1}}) < 0\} \nonumber \\
+& = \mathbf 1\{\Gamma_{T-1}^{i,j} (A^{i,j}_{T-1}, w_{m,T-1}, w_{f,T-1}, \zeta^{i,j}_{T-1}; \bm{\theta_{T-1}}) < 0\} \nonumber
+\end{align}
+ 
+\section{Identification power of matching observations} \label{sec_5}
+
+Incorporating matching to the intra-household allocation problem provides identification power. To show how matching observations can help the identification of our model,  assume a male single of type $i$ and wage $w_m$ who holds assets $\tilde a_m$ meets a female of type $j$ and wage $w_f$ who holds assets $\tilde a_f$. They consummate the match if 
+
+\begin{align}
+D_c^{i,j}(\tilde a_m, \tilde a_f, w_m, w_f, \zeta) = \mathbf 1\left \{V_m^{i,j}(\tilde a_m+\tilde a_f, w_m, w_f, \zeta) - S_m^i(\tilde a_m, w_m) \geq 0 \right \} \times \label{D_c_1} \\
+\mathbf 1\left \{V_f^{i,j}(\tilde a_m+\tilde a_f, w_m, w_f, \zeta) - S_f^j(\tilde a_f, w_f) \geq 0 \right  \} \nonumber
+\end{align}
+Given \eqref{equiv_gamma}, we can rewrite \eqref{D_c_1} as follows 
+\begin{align}
+D_c^{i,j}(\tilde a_m, \tilde a_f, w_m, w_f) &= \mathbf 1\left \{ \Gamma^{i,j}(\tilde a_m+\tilde a_f, w_m, w_f, \zeta) \geq 0\right \}  \label{D_c_2} \\
+&= \mathbf 1\left \{ \Gamma_m^{i,j}(\tilde a_m+\tilde a_f,  w_m, w_f, \zeta) \geq 0\right \}  \nonumber \\
+&= \mathbf 1\left \{ \Gamma_f^{i,j}(\tilde a_m+\tilde a_f, w_m, w_f, \zeta) \geq 0\right \}  \nonumber 
+\end{align}
+To derive the expected probability of observing a consummated match of type $(i,j)$, let $f_{\tilde w^i_m}$ and $f_{\tilde w^i_m}$ denote the observed wage distribution of single males of type $i$ and females of type $j$. Also, $f_{\tilde w^i_m, \tilde w^j_f}$ denotes the observed joint distribution of wages for married couples. Let $f_{\tilde a_m^i},  f_{\tilde a_f^j}$ be the observed distribution of assets held by single males of type $i$ and single females of type $j$, respectively. Let $f_{\tilde A}^{i,j}$ be the observed distributions of assets held by marriages of type $(i,j)$.
+
+\begin{align*}
+\alpha_c^{i,j} =\int_{\mathcal{Z}} \int_{\mathcal{A_F}}\int_{\mathcal{A_M}} \int_{\mathcal{W_F}} \int_{\mathcal{W_M}} D_c^{i,j}(\tilde a_m, \tilde a_f, \tilde w_m, \tilde w_f, \zeta) f_{\tilde w^i_m} f_{\tilde w^j_f} f_{\tilde a_m^i} f_{\tilde a_f^j} f_{\zeta}(\zeta) d \tilde w_m d\tilde w_f d \tilde a_m d \tilde a_f d\zeta
+\end{align*}
+On the other hand, a marriage of type $(i,j)$ with assets level of $\tilde A$ and wages pair of $(w_m, w_f)$ dissolves if 
+\begin{align}
+D_d^{i,j}(\tilde A, w_m, w_f, \zeta) = 1 - \left [ \mathbf 1\left \{V_m^{i,j}(\tilde A, w_m, w_f, \zeta) - S_m^i(\gamma \tilde A, w_m) \geq 0 \right \} \times \right.  \label{D_d_1}\\
+\left. \mathbf 1\left \{V_f^{i,j}(\tilde A, w_m, w_f, \zeta) - S_f^j((1 - \gamma)\tilde A, w_f) \geq 0 \right \} \right] \nonumber 
+\end{align}
+Given \eqref{equiv_gamma}, we can rewrite \eqref{D_c_1} as follows 
+
+\begin{align}
+D_d^{i,j}(\tilde A, w_m, w_f) &= \mathbf 1\left \{ \Gamma^{i,j}(\tilde A, \gamma \tilde A, (1-\gamma) \tilde A, w_m, w_f, \zeta) < 0\right \}  \label{D_c_2} \\
+&= \mathbf 1\left \{ \Gamma_m^{i,j}(\tilde A, \gamma \tilde A, w_m, w_f, \zeta) < 0\right \}  \nonumber \\
+&= \mathbf 1\left \{ \Gamma_f^{i,j}(\tilde A, (1 - \gamma) \tilde A, w_m, w_f, \zeta) < 0\right \}  \nonumber 
+\end{align}
+Thus, the expected probability of observing a divorce of type $(i,j)$ is as follows 
+\begin{align*}
+\alpha_d^{i,j} = \int_{\mathcal{Z}} \int_{\mathcal{A}}\int_{\mathcal{W_F}} \int_{\mathcal{W_M}} D_d^{i,j}(\tilde A, \tilde w_m, \tilde w_f, \zeta) f_{\tilde w^i_m, \tilde w^j_f} f_{\tilde A}^{i,j} f_{\zeta}(\zeta)dw_m dw_f d \tilde A d\zeta
+\end{align*}
+Furthermore, in each period, we observe the following match-related variables
+\begin{itemize}
+\item $n_m(i)$ the density function of single males of type $i$
+\item $n_f(j)$ the density function of single females of type $j$
+\item $N_m = \int_{\mathcal{I}}n_m(i) di$ the total number of single males 
+\item $N_f = \int_{\mathcal{J}}n_f(j) dj$ the total number of single females 
+\item $m(i,j)$ the density of marriages of type $(i,j)$
+\item $M = \int_{\mathcal{I}} \int_{\mathcal{J}} m(i,j)$ total number of marriages 
+\item $MF(i,j)$ flow into marriage of type $(i,j)$
+\item $DF(i,j)$ flow into couples of type $(i,j)$ who were divorced 
+\end{itemize}
+Thus, $\alpha_{d}^{i,j}$ is identified as follows 
+\begin{equation*}
+DF(i,j) = m(i,j)M\alpha_{d}^{i,j} \Rightarrow \alpha_{d}^{i,j} = \dfrac{DF(i,j)}{m(i,j)M}
+\end{equation*}
+To identify $\alpha_{c}^{i,j}$ we first need to specify the \emph{meeting technology}. We assume that the generated meetings follow the following technology 
+\begin{equation*}
+\tilde M(i,j) = \lambda n_m(i)n_f(j) N_m N_f
+\end{equation*}
+where $\tilde M(i,j)$ is the number of meetings of type $(i,j)$. Note that we have specified $\lambda$ independent of types. Then 
+\begin{align*}
+MF(i,j) &= \tilde M(i,j) \alpha_w^{i,j}= \lambda  \alpha_w^{i,j} n_m(i)n_f(j) N_m N_f \\
+\lambda  \alpha_w^{i,j} &= \dfrac{MF(i,j)}{n_m(i)n_f(j) N_m N_f}
+\end{align*}
+Therefore, the level of $\alpha_{w}^{i,j}$ is not identified. However, it is identified up to a multiplicative constant. Thus, we can identify the following objects 
+\begin{align*}
+\dfrac{ \alpha_w^{i,j}}{ \alpha_w^{i',j'}} = \dfrac{MF(i,j)}{MF(i',j')} \dfrac{n_m(i)n_f(j) }{n_m(i')n_f(j')}
+\end{align*}
+
+\begin{comment}
+
+\section{Reduced form equations}
+The structural model delineated above gives the following policy functions that can be used as reduced form equations in a nonlinear VAR estimation. In this section,  we focus on married couples and try to non parametrically estimate a nonlinear VAR system which explains the household consumption, each spouses' hours, assets, and decision to divorce as follows 
+\begin{align*}
+c_{m,t} &= c_{m,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t) \\
+c_{f,t} &= c_{f,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t)\\
+h_{m,t} &=  h_{m,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t) \\
+h_{f,t} &= h_{f,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t) \\
+A_{t} &=  A_{t}(A_{t-1}, w_{m,t-1}, w_{f,t-1}, \zeta_t) \\
+D_{d,t} &= D_{d,t} (A_{t}, w_{m,t}, w_{f,t}, \zeta_{t})
+\end{align*}
+Since in PSID we do not observe the private consumption of spouses, we can only conned the household consumption
+\begin{align*}
+c_{t} = c_{m,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t) + c_{f,t}(A_{t}, w_{m,t}, w_{f,t}, \zeta_t) = c_t(A_{t}, w_{m,t}, w_{f,t}, \zeta_t)
+\end{align*}
+Given the budget constraints, the reduced form equation for assets can also be considered as follows 
+\begin{align*}
+A_{t} &=  A_{t}(A_{t-1}, w_{m,t-1}, w_{f,t-1}, c_{t-1}, h_{m,t-1}, h_{f,t-1}) 
+\end{align*}
+The wage process for a marriage of type $(i,j)$ with identity $k$ at time $t$ is a first order Markov process  
+\begin{align*}
+W_{k,t}^{i,j} &= Q^{i,j}(W_{k, t-1}^{i,j}, U_{k,t}) \\
+W_{k,t}^{i,j}  &= (\ln w_{k,m,t}^i, \ln w_{k,f,t}^j)'
+\end{align*}
+where $U_{k,t}$ are independent of $W^{t-1}_k$, and independent over time. 
+
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+% --------------------- Bibliography hidden with a save box ---------------------------------------
+\clearpage
+\bibliographystyle{chicago}
+\bibliography{Mohsen1, heckman1}
+
+\end{document}
